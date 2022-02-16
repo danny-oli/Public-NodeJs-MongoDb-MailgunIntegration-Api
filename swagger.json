@@ -1,0 +1,264 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "NodeJs-MongoDb-MailgunIntegration-Api",
+    "description": "Documentation from Challange-Microservice-Api",
+    "version": "1.0.0"
+  },
+  "contact": {
+    "name": "Danny Oliveira",
+    "url": "https://github.com/danny-oli"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Development server"
+    }
+  ],
+
+  "components": {
+    "securitySchemes": {
+      "x-access-token": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-access-token"
+      }
+    }
+  },
+
+  "paths": {
+
+    "/user/createUser": {
+      "post": {
+        "description": "Route for create a new user and receive your integrationKey",
+        "tags": ["User"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "required": true
+                  }
+                },
+                "example": {
+                  "username": "danny-oli",
+                  "email": "danny-oli@email.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created!"
+          },
+          "400": {
+            "description": "Bad Request!"
+          },
+          "409": {
+            "description": "Conflict!"
+          }
+        }
+      }
+    },
+
+    "/user/findUsers": {
+      "get": {
+        "description": "Find all users.",
+        "tags": ["User"],
+        "security": [{ "x-access-token": [] }],
+        "responses": {
+          "200": {
+            "description": "Users found."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "No users found."
+          }
+        }
+      }
+    },
+
+    "/user/findUserById/{userId}": {
+      "get": {
+        "description": "Find user by Id.",
+        "tags": ["User"],
+        "security": [{ "x-access-token": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
+
+    "/user/updateUser/{userId}": {
+      "put": {
+        "description": "Route used to update User information.",
+        "tags": ["User"],
+        "security": [{ "x-access-token": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "required": true
+                  }
+                },
+                "example": {
+                  "username": "danny-oli",
+                  "email": "danny-oli@email.com"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated!"
+          },
+          "400": {
+            "description": "Bad Request!"
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
+
+    "/user/deleteUser/{userId}": {
+      "delete": {
+        "description": "Route used to delete own user.",
+        "tags": ["User"],
+        "security": [{ "x-access-token": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted!"
+          },
+          "404": {
+            "description": "User not found."
+          }
+        }
+      }
+    },
+
+
+
+    "/mailgun/sendMail": {
+      "post": {
+        "description": "Use your integrationKey to be able to send you email.",
+        "tags": ["Mailgun"],
+        "security": [{ "x-access-token": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "array",
+                    "description":"Array of email strings.",
+                    "required": true
+                  },
+                  "subject": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "text": {
+                    "type": "string",
+                    "required": true
+                  },
+                  "html":{
+                    "type": "string",
+                    "required": true
+                  }
+                },
+                "example": {
+                  "to": ["firstmail@mail.com", "secondmail@mail.com"],
+                  "subject": "Mail subject",
+                  "text": "Mail Body Example",
+                  "html": "<html><body><table><tr><th>Company</th><th>Contact</th><th>Country</th></tr><tr><td>Alfreds Futterkiste</td><td>Maria Anders</td><td>Germany</td></tr><tr><td>Centro comercial Moctezuma</td><td>Francisco Chang</td><td>Mexico</td></tr></table></body></html>"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok!"
+          },
+          "403": {
+            "description": "Forbidden!"
+          }
+        }
+      }
+    },
+
+    "/mailgun/getSentMails": {
+      "get": {
+        "description": "Find all sent mails.",
+        "tags": ["Mailgun"],
+        "security": [{ "x-access-token": [] }],
+        "responses": {
+          "200": {
+            "description": "Sent Mails"
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "No mails found."
+          }
+        }
+      }
+    }
+
+  }
+}

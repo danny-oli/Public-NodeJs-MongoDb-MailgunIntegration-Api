@@ -1,0 +1,38 @@
+{
+  "name": "challenge-microservice-api",
+  "version": "1.0.0",
+  "description": "_É de suma importancia que você leia até o final antes de começar a fazer o desafio_",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js --ignore-watch node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danny-oli/challenge-microservice-api.git"
+  },
+  "keywords": [],
+  "author": "Danny Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "form-data": "^4.0.0",
+    "mailgun.js": "^4.1.6",
+    "mongoose": "^5.12.13",
+    "nodemon": "^2.0.7",
+    "save": "^2.4.0",
+    "swagger-jsdoc": "5.0.1",
+    "swagger-ui-express": "^4.3.0",
+    "uuid": "^8.3.2"
+  },
+  "bugs": {
+    "url": "https://github.com/danny-oli/challenge-microservice-api/issues"
+  },
+  "homepage": "https://github.com/danny-oli/challenge-microservice-api#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
