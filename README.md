@@ -75,17 +75,17 @@ yarn dev
 
 ## :rocket: Insomnia testing!
 
-Abaixo exemplifico as rotas de usuário!
+Api Routes explained below
 
   ROUTES                    |     HTTP   |      DESCRIPTION        | 
 -------------------------------- | ----------------- | --------------------- | 
-/user/createUser             |       POST        | Criar usuário         | 
-/user/findUsers              |       GET         | Selecionar Todos      | 
-/user/findUserById/:id       |       GET         | Selecionar Por Id     | 
-/user/updateUser/:id         |       PUT         | Atualizar Por Id      |    
-/user/deleteUser/:id         |       DELETE      | Excluir Por Id        |
-/mailgun/sendMail            |       POST        | Criar Substancia      |
-/mailgun/getSentMails        |       GET         | Selecionar Todas      |
+/user/createUser             |       POST        | Create User           | 
+/user/findUsers              |       GET         | Get Users             | 
+/user/findUserById/:id       |       GET         | Get User by Id        | 
+/user/updateUser/:id         |       PUT         | Update User           |    
+/user/deleteUser/:id         |       DELETE      | Delete User           |
+/mailgun/sendMail            |       POST        | Send Mail             |
+/mailgun/getSentMails        |       GET         | Get Sent Mails        |
 
 <br>
 
